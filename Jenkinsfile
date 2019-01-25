@@ -1,16 +1,14 @@
 pipeline {
-    agent none 
+    agent {
+        docker {
+            image 'maven:3-alpine' 
+            args '-v /root/.m2:/root/.m2' 
+        }
+    }
     stages {
         stage('Build') { 
-            agent {
-                docker {
-                    image 'python:2-alpine' 
-                }
-            }
             steps {
-		sh 'cd sources'
-		sh 'ls'
-                sh 'python -m py_compile sources/add2vals.py sources/calc.py' 
+                sh 'mvn -B -DskipTests clean package' 
             }
         }
     }
