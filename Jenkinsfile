@@ -8,6 +8,8 @@ pipeline {
                 }
             }
             steps {
+		sh 'cd sources'
+		sh 'ls'
                 sh 'python -m py_compile sources/add2vals.py sources/calc.py' 
             }
         }
