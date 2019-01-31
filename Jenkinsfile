@@ -8,8 +8,11 @@ pipeline {
     stages {
         stage('Credentials Stage') {
             steps {
+		withCredentials([string(credentialsId: 'jenkins-aws-secret-key-id', variable: 'PW1')]) {
+    			echo "My password is '${PW1}'!"
+		}		
                 sh 'echo aws-secret-key-id=$AWS_ACCESS_KEY_ID'
-				sh 'echo aws-secret-access-key=$AWS_SECRET_ACCESS_KEY' 
+		sh 'echo aws-secret-access-key=$AWS_SECRET_ACCESS_KEY' 
             }
         }
     }
