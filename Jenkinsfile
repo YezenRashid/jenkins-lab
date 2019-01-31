@@ -8,8 +8,8 @@ pipeline {
     stages {
         stage('Credentials Stage') {
             steps {
-                sh 'echo $AWS_ACCESS_KEY_ID'
-		sh 'echo $AWS_SECRET_ACCESS_KEY' 
+                sh 'echo aws-secret-key-id=$AWS_ACCESS_KEY_ID'
+				sh 'echo aws-secret-access-key=$AWS_SECRET_ACCESS_KEY' 
             }
         }
     }
